@@ -1,0 +1,1 @@
+{'Hospital_name':hospital2 ,'Departments':[],'Doctors':[],'Patients':[]}
