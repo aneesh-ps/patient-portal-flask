@@ -1,7 +1,11 @@
+from Database import database
 
 class department():
-    def add_department():
-        status={"status":"Department added successfully"}
+    def __init__(self,department_name):
+        self.department_name=department_name
+
+    def add_department(self):
+        status=database.database.add(table_name ='Departments',name =self.department_name)
         return status
 
     def remove_department():

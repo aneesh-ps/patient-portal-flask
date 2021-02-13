@@ -19,8 +19,10 @@ def add_new_account():
 
 @app.route('/add_department',methods=['POST'])  
 def add_department():
-    # req=request.get_json()
-    res=department.department.add_department()
+    req=request.get_json()
+    department_name=req["department_name"]
+    department_obj=department.department(department_name)
+    res=department.department.add_department(department_obj)
     return res
 
 @app.route('/remove_department',methods=['POST'])  
