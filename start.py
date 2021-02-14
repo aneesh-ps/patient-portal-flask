@@ -27,8 +27,10 @@ def add_department():
 
 @app.route('/remove_department',methods=['POST'])  
 def remove_department():
-    # req=request.get_json()
-    res=department.department.remove_department()
+    req=request.get_json()
+    department_name=req["department_name"]
+    department_obj=department.department(department_name)
+    res=department.department.remove_department(department_obj)
     return res
 
 @app.route('/edit_department',methods=['POST'])  
@@ -39,9 +41,12 @@ def edit_department():
 
 @app.route('/search_department',methods=['POST'])  
 def search_department():
-    # req=request.get_json()
-    res=department.department.search_department()
+    req=request.get_json()
+    department_name=req["department_name"]
+    department_obj=department.department(department_name)
+    res=department.department.search_department(department_obj)
     return res
+    
 
 
  #doctor

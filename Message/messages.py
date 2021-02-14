@@ -4,5 +4,5 @@ class success_message():
 
 class error_message():
     def error(operation):
-        return "can't complete  "+operation
+        return "Data "+operation+" unsuccessful"
       

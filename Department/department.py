@@ -8,16 +8,16 @@ class department():
         status=database.database.add(table_name ='Departments',name =self.department_name)
         return status
 
-    def remove_department():
-        status={"status":"Department removed successfully"}
+    def remove_department(self):
+        status=database.database.remove(table_name='Departments',name=self.department_name)
         return status
 
     def edit_department():
         status={"status":"Department edited successfully"}
         return status
 
-    def search_department():
-        status={"details":"details of department"}
+    def search_department(self):
+        status=database.database.search(table_name='Departments',name=self.department_name)
         return status
 
 
