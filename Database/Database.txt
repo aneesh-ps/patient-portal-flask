@@ -1,1 +1,1 @@
-{"hospital_name": "hospital1", "departments": [{"department_id": "department_id_1", "department_name": "department1"}, {"department_id": "department_id_2", "department_name": "department_2.1"}], "doctors": [{"doctor_name": "doctor_name_edited", "department_id": "department_id_1", "doctor_id": "doctor_id_1"}], "patients": []}
+{'hospital_name':"hospital1" ,'departments':[],'doctors':[],'patients':[]}
