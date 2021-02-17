@@ -19,8 +19,12 @@ class doctor():
         return doctor_remove_status
 
     def edit_doctor(value_indicators,new_values):
-        doctor_edit_status=database.database.edit(table_name='doctors',value_indicators=value_indicators,values_to_update=new_values)
-        return doctor_edit_status
+        department_search_status=database.database.search(table_name='departments',department_id=new_values["deprtment_id"])
+        if len(department_search_status["error"])!=0:
+            return department_search_status
+        else:
+            doctor_edit_status=database.database.edit(table_name='doctors',value_indicators=value_indicators,values_to_update=new_values)
+            return doctor_edit_status
 
     def search_doctor(doctor_id_to_search):
         doctor_search_status=database.database.search(table_name='doctors',doctor_id=doctor_id_to_search)

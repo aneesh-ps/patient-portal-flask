@@ -21,30 +21,30 @@ def add_new_account():
 @app.route('/add_department',methods=['POST'])   #{"department_name": "department1"}
 def add_department():
     req=request.get_json()
-    department_name=req["department_name"]
-    res=department.department.add_department(department_name)
+    department_name_to_add=req["department_name"]
+    res=department.department.add_department(department_name_to_add)
     return res
 
 @app.route('/remove_department',methods=['POST'])   #{"department_id": "department_id_2"}  
 def remove_department():
     req=request.get_json()
-    department_id=req["department_id"]
-    res=department.department.remove_department(department_id)
+    department_id_to_remove=req["department_id"]
+    res=department.department.remove_department(department_id_to_remove)
     return res
 
-@app.route('/edit_department',methods=['POST'])  #{"value_indicator":{"department_id": "department_id_2.1"},"values_to_update":{"department_name": "department_2.1"}}
+@app.route('/edit_department',methods=['POST'])  #{"value_indicator":{"department_id": "department_id_1"},"values_to_update":{"department_name": "department_2.1"}}
 def edit_department():
     req=request.get_json()
-    value_indicator=req["value_indicator"]
+    value_indicator_to_edit=req["value_indicator"]
     values_to_update=req["values_to_update"]
-    res=department.department.edit_department(value_indicator,values_to_update)
+    res=department.department.edit_department(value_indicator_to_edit,values_to_update)
     return res
 
 @app.route('/search_department',methods=['POST'])  #{"department_id":"department_id_2"}
 def search_department():
     req=request.get_json()
-    department_id=req["department_id"]
-    res=department.department.search_department(department_id)
+    department_id_to_search=req["department_id"]
+    res=department.department.search_department(department_id_to_search)
     return res
     
 
@@ -54,57 +54,66 @@ def search_department():
 @app.route('/add_doctor',methods=['POST'])  #{"department_name":"department1","doctor_name":"doctor1"}
 def add_doctor():
     req=request.get_json()
-    doctor_name=req["doctor_name"]
-    department_name=req["department_name"]
-    res=doctor.doctor.add_doctor(doctor_name,department_name)
+    doctor_name_to_add=req["doctor_name"]
+    department_name_to_add=req["department_name"]
+    res=doctor.doctor.add_doctor(doctor_name_to_add,department_name_to_add)
     return res
 
 @app.route('/remove_doctor',methods=['POST']) #{"doctor_id": "doctor_id_1"}
 def remove_doctor():
     req=request.get_json()
-    doctor_id=req["doctor_id"]
-    res=doctor.doctor.remove_doctor(doctor_id)
+    doctor_id_to_remove=req["doctor_id"]
+    res=doctor.doctor.remove_doctor(doctor_id_to_remove)
     return res
 
-@app.route('/edit_doctor',methods=['POST'])  #{"value_indicator":{"doctor_id": "doctor_id_1"},"values_to_update":{"doctor_name": "doctor_name_edited"}}
+@app.route('/edit_doctor',methods=['POST'])  #{"value_indicator":{"doctor_id": "doctor_id_1"},"values_to_update":{"doctor_name": "doctor_name_edited",deprtment_id:"department_id_edited"}}
 def edit_doctor():
     req=request.get_json()
-    value_indicator=req["value_indicator"]
+    value_indicator_to_edit=req["value_indicator"]
     values_to_update=req["values_to_update"]
-    res=doctor.doctor.edit_doctor(value_indicator,values_to_update)
+    res=doctor.doctor.edit_doctor(value_indicator_to_edit,values_to_update)
     return res
 
 @app.route('/search_doctor',methods=['POST'])   #{"doctor_id": "doctor_id_1"}
 def search_doctor():
     req=request.get_json()
-    doctor_id=req["doctor_id"]
-    res=doctor.doctor.search_doctor(doctor_id)
+    doctor_id_to_search=req["doctor_id"]
+    res=doctor.doctor.search_doctor(doctor_id_to_search)
     return res   
 
 #patient
 
-@app.route('/add_patient',methods=['POST'])  
+@app.route('/add_patient',methods=['POST'])  #{"patient_name":"aneesh","patient_age":21,"patient_gender":"male","doctor_name":"doctor_1","department_name":"department_1"}
 def add_patient():
-    # req=request.get_json()
-    res=patient.patient.add_patient()
+    req=request.get_json()
+    patient_name_to_add=req["patient_name"]
+    doctor_name_to_add=req["doctor_name"]
+    department_name_to_add=req["department_name"]
+    patient_age_to_add=req["patient_age"]
+    patient_gender_to_add=req["patient_gender"]
+    res=patient.patient.add_patient(patient_name_to_add,patient_age_to_add,patient_gender_to_add,doctor_name_to_add,department_name_to_add)
     return res
 
-@app.route('/remove_patient',methods=['POST'])  
+@app.route('/remove_patient',methods=['POST'])  #{"patient_id":"patient_id_1"}
 def remove_patient():
-    # req=request.get_json()
-    res=patient.patient.remove_patient()
+    req=request.get_json()
+    patient_id_to_add=req["patient_id"]
+    res=patient.patient.remove_patient(patient_id_to_add)
     return res
 
-@app.route('/edit_patient',methods=['POST'])  
+@app.route('/edit_patient',methods=['POST'])  #{"value_indicator":{"patient_id": "patient_id_1"},"values_to_update":{"patient_name":"aneesh_edited","patient_age":21,"patient_gender":"male","doctor_name":"doctor_1","department_name":"department_1"}}
 def edit_patient():
-    # req=request.get_json()
-    res=patient.patient.edit_patient()
+    req=request.get_json()
+    value_indicator_to_edit=req["value_indicator"]
+    values_to_update=req["values_to_update"]
+    res=patient.patient.edit_patient(value_indicator_to_edit,values_to_update)
     return res
 
-@app.route('/search_patient',methods=['POST'])  
+@app.route('/search_patient',methods=['POST'])  #{"patient_id":"patient_id_1"}
 def search_patient():
-    # req=request.get_json()
-    res=patient.patient.search_patient()
+    req=request.get_json()
+    patient_id_to_search=req["patient_id"]
+    res=patient.patient.search_patient(patient_id_to_search)
     return res
 
   
