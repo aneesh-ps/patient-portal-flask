@@ -45,6 +45,44 @@ class patient():
         patient_edit_status=database.database.edit(table_name='patients',value_indicators=value_indicators,values_to_update=new_values)
         return patient_edit_status
 
-    def search_patient(patient_id_to_search):
+    def search_patient_id(patient_id_to_search):
         patient_search_status=database.database.search(table_name='patients',patient_id=patient_id_to_search)
         return patient_search_status
+
+    def search_patient_name(patient_name_to_search):
+        patient_search_status=database.database.search(table_name='patients',patient_name=patient_name_to_search)
+        return patient_search_status
+
+    def search_all_patients():
+        patients_search_all_status=database.database.search(table_name='patients')
+        return patients_search_all_status
+
+    def search_patient_department_name(department_name_to_search):
+        department_search_status=database.database.search(table_name="departments",department_name=department_name_to_search)
+        if len(department_search_status["error"])!=0:
+            return department_search_status
+        else:
+            patient_search_department_name=database.database.search(table_name="patients",department_name=department_name_to_search)
+            return patient_search_department_name
+
+
+    def search_patient_doctor_name(doctor_name_to_search):
+        doctor_search_status=database.database.search(table_name="doctors",doctor_name=doctor_name_to_search)
+        if len(doctor_search_status["error"])!=0:
+            return doctor_search_status
+        else:
+            patient_search_doctor_name=database.database.search(table_name="patients",doctor_name=doctor_name_to_search)
+            return patient_search_doctor_name
+
+    def search_patient_department_name_doctor_name(department_name_to_search,doctor_name_to_search):
+        doctor_search_status=database.database.search(table_name="doctors",doctor_name=doctor_name_to_search)
+        department_search_status=database.database.search(table_name="departments",department_name=department_name_to_search)
+        if len(doctor_search_status["error"])!=0:
+            return doctor_search_status
+        
+        if len(department_search_status["error"])!=0:
+            return department_search_status
+        
+        patient_search_doctor_name_status=database.database.search(table_name="patients",doctor_name=doctor_name_to_search,department_name=department_name_to_search)
+
+        return patient_search_doctor_name_status

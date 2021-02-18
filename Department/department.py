@@ -18,8 +18,16 @@ class department():
         department_edit_status=database.database.edit(table_name='departments',value_indicators=value_indicators,values_to_update=new_values)
         return department_edit_status
 
-    def search_department(department_id_to_search):
+    def search_department_id(department_id_to_search):
         department_search_status=database.database.search(table_name='departments',department_id=department_id_to_search)
         return department_search_status
+
+    def search_department_name(department_name_to_search):
+        department_search_status=database.database.search(table_name='departments',department_name=department_name_to_search)
+        return department_search_status
+    
+    def search_all_department():
+        department_search_all_status=database.database.search(table_name='departments')
+        return department_search_all_status
 
 

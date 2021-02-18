@@ -85,6 +85,16 @@ class database():
         database_value_all=database.database_read(database)
         table_name=values["table_name"]
         del values["table_name"]
+
+        if len(values)==0:
+            for item in database_value_all[table_name]:
+                success_message=messages.success_message.success(table_name,"search_all")
+                return_value.append(item)
+            if len(return_value)!=0:
+                return {"error":error_message,"success":success_message,"value":return_value}
+            error_message=messages.error_message.error(table_name,"search")
+            return {"error":error_message,"success":success_message,"value":return_value}
+
         for item in database_value_all[table_name]:
             if set(values.items()).issubset(set(item.items())):
                 success_message=messages.success_message.success(table_name,"search")

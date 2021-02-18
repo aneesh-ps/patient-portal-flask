@@ -40,11 +40,24 @@ def edit_department():
     res=department.department.edit_department(value_indicator_to_edit,values_to_update)
     return res
 
-@app.route('/search_department',methods=['POST'])  #{"department_id":"department_id_2"}
-def search_department():
+@app.route('/search_department_id',methods=['POST'])  #{"department_id":"department_id_2"}
+def search_department_id():
     req=request.get_json()
     department_id_to_search=req["department_id"]
-    res=department.department.search_department(department_id_to_search)
+    res=department.department.search_department_id(department_id_to_search)
+    return res
+
+@app.route('/search_department_name',methods=['POST'])  #{"department_name": "department_1"}
+def search_department_name():
+    req=request.get_json()
+    department_name_to_search=req["department_name"]
+    res=department.department.search_department_name(department_name_to_search)
+    return res
+
+
+@app.route('/search_all_departments',methods=['POST'])
+def search_all_departments():
+    res=department.department.search_all_department()
     return res
     
 
@@ -74,12 +87,40 @@ def edit_doctor():
     res=doctor.doctor.edit_doctor(value_indicator_to_edit,values_to_update)
     return res
 
-@app.route('/search_doctor',methods=['POST'])   #{"doctor_id": "doctor_id_1"}
-def search_doctor():
+@app.route('/search_doctor_id',methods=['POST'])   #{"doctor_id": "doctor_id_1"}
+def search_doctor_id():
     req=request.get_json()
     doctor_id_to_search=req["doctor_id"]
-    res=doctor.doctor.search_doctor(doctor_id_to_search)
+    res=doctor.doctor.search_doctor_id(doctor_id_to_search)
     return res   
+
+
+@app.route('/search_doctor_name',methods=['POST'])   #{"doctor_name": "doctor_1"}
+def search_doctor_name():
+    req=request.get_json()
+    doctor_name_to_search=req["doctor_name"]
+    res=doctor.doctor.search_doctor(doctor_name_to_search)
+    return res
+ 
+
+@app.route('/search_all_doctors',methods=['POST'])
+def search_all_doctors():
+    res=doctor.doctor.search_all_doctor()
+    return res
+
+@app.route('/search_all_doctors_department_id',methods=['POST'])
+def search_all_doctors_department_id():
+    req=request.get_json()
+    department_id=req["department_id"]
+    res=doctor.doctor.search_all_doctors_department_id(department_id)
+    return res
+
+@app.route('/search_all_doctors_department_name',methods=['POST'])
+def search_all_doctors_department_name():
+    req=request.get_json()
+    department_name=req["department_name"]
+    res=doctor.doctor.search_all_doctors_department_name(department_name)
+    return res
 
 #patient
 
@@ -109,12 +150,49 @@ def edit_patient():
     res=patient.patient.edit_patient(value_indicator_to_edit,values_to_update)
     return res
 
-@app.route('/search_patient',methods=['POST'])  #{"patient_id":"patient_id_1"}
-def search_patient():
+@app.route('/search_patient_id',methods=['POST'])  #{"patient_id":"patient_id_1"}
+def search_patient_id():
     req=request.get_json()
     patient_id_to_search=req["patient_id"]
-    res=patient.patient.search_patient(patient_id_to_search)
+    res=patient.patient.search_patient_id(patient_id_to_search)
     return res
+
+@app.route('/search_patient_name',methods=['POST'])  #{"patient_name": "aneesh_edited"}
+def search_patient_name():
+    req=request.get_json()
+    patient_name_to_search=req["patient_name"]
+    res=patient.patient.search_patient_name(patient_name_to_search)
+    return res
+
+
+@app.route('/search_all_patients',methods=['POST'])  #{"patient_id":"patient_id_1"}
+def search_all_patients():
+    res=patient.patient.search_all_patients()
+    return res
+
+
+@app.route('/search_patient_department_name',methods=['POST'])  #{"department_name": "department_1"}
+def search_patient_department_name():
+    req=request.get_json()
+    department_name_to_search=req["department_name"]
+    res=patient.patient.search_patient_department_name(department_name_to_search)
+    return res
+
+@app.route('/search_patient_doctor_name',methods=['POST'])  #{"doctor_name": "doctor_1"}
+def search_patient_doctor_name():
+    req=request.get_json()
+    doctor_name_to_search=req["doctor_name"]
+    res=patient.patient.search_patient_doctor_name(doctor_name_to_search)
+    return res
+
+@app.route('/search_patient_department_name_doctor_name',methods=['POST'])  #{"doctor_name": "doctor_1","department_name": "department_1"}
+def search_patient_department_name_doctor_name():
+    req=request.get_json()
+    department_name_to_search=req["department_name"]
+    doctor_name_to_search=req["doctor_name"]
+    res=patient.patient.search_patient_department_name_doctor_name(department_name_to_search,doctor_name_to_search)
+    return res
+
 
   
 
